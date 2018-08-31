@@ -1,0 +1,6 @@
+Customers[Name,Mobile,Email,Address,Activated]
+Countries[Name]
+Governerates[Name]
+Jobs[Name]
+InterActions[Date - Status - Comment-CallDate]
+Users[Name,Email,Password,isAdmin]

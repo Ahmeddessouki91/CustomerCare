@@ -30,7 +30,6 @@ export class AuthService {
         const token = this.getToken();
         return tokenNotExpired(null, token);
     }
-
     get userInfo() {
         const helper = new JwtHelper();
         let token = this.getToken(); 

@@ -1,0 +1,42 @@
+<h2>Users</h2>
+
+<p>
+  <a [routerLink]="['/users/new']" class="btn btn-primary">New User</a>
+</p>
+<div class="well">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" class="form-control" [(ngModel)]="query.name" (keyup)="onFilterChange()">
+  </div>
+
+  <button class="btn btn-secondary" (click)="restFilter()">Reset</button>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th *ngFor="let c of columns">
+        <div *ngIf="c.isSortable" (click)="sortBy(c.key)">
+          {{c.title}}
+          <i *ngIf="query.sortBy === c.key" class="fa" [class.fa-sort-up]="query.isSortAscending" [class.fa-sort-down]="!query.isSortAscending"></i>
+        </div>
+        <div *ngIf="!c.isSortable">
+          {{c.title}}
+        </div>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let u of Users">
+      <td>{{u.id}}</td>
+      <td>{{u.name}}</td>
+      <td>{{u.email}}</td>
+      <td>
+        <a [routerLink]="['/users/', u.id]">View </a>|
+        <a [routerLink]="['/users/edit', u.id]">Edit </a>| 
+        <a href="#" (click)="toggleActivation(u)"> {{u.deactive?'Active':'Deactive'}}</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<app-pagination [total-items]="totalItems" [page-size]="query.pageSize" (page-changed)="onPageChange($event)"></app-pagination>

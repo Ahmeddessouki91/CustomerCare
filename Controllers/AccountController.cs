@@ -16,16 +16,16 @@ namespace CustomerCare.Controllers
     [Route("/api/[Controller]")]
     public class AccountController : Controller
     {
-        private readonly IAuthRepository _authCtx;
+        private readonly IAuthRepository _authRepo;
         private readonly IMapper _mapper;
         private readonly IConfiguration _config;
-        private readonly IUnitOfWork _uof;
-        public AccountController(IAuthRepository authCtx, IMapper mapper, IConfiguration config, IUnitOfWork uof)
+        private readonly IUnitOfWork _uow;
+        public AccountController(IAuthRepository authRepo, IMapper mapper, IConfiguration config, IUnitOfWork uow)
         {
-            this._uof = uof;
+            this._uow = uow;
             this._config = config;
             this._mapper = mapper;
-            this._authCtx = authCtx;
+            this._authRepo = authRepo;
         }
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody]LoginResource user)
@@ -34,9 +34,11 @@ namespace CustomerCare.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var dbUser = await _authCtx.Login(user.Email, user.Password);
+            var dbUser = await _authRepo.Login(user.Email, user.Password);
             if (dbUser == null)
                 return Unauthorized();
+            if (dbUser.Deactive)
+                return BadRequest("Your account has been locked by admin!");
 
             var token = GenerateToken(dbUser);
             return Ok(new { token });
@@ -47,13 +49,13 @@ namespace CustomerCare.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            if (await _authCtx.UserExist(user.Email))
+            if (await _authRepo.UserExist(user.Email))
                 return BadRequest("Email is already registered!");
 
             var userToCreate = _mapper.Map<UserSaveResource, User>(user);
 
-            await _authCtx.Register(userToCreate, user.Password);
-            await _uof.CompleteAsyn();
+            await _authRepo.Register(userToCreate, user.Password);
+            await _uow.CompleteAsyn();
 
             return StatusCode(201);
         }

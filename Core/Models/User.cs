@@ -20,6 +20,7 @@ namespace CustomerCare.Core.Models
         [Required]
         public byte[] PasswordSalt { get; set; }
         public bool IsAdmin { get; set; }
+        public bool Deactive { get; set; }
         public ICollection<Customer> Customers { get; set; }
         public User()
         {

@@ -57,7 +57,7 @@ namespace CustomerCare
             //Dependency Injections
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IAuthRepository, AuthRepository>();
-
+            services.AddScoped<IUserRepository,UserRepository>();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {

@@ -4,14 +4,16 @@ using CustomerCare.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CustomerCare.Migrations
 {
     [DbContext(typeof(CuCareDbContext))]
-    partial class CuCareDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180831201322_AddActiveFlagToUserTable")]
+    partial class AddActiveFlagToUserTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -132,7 +134,7 @@ namespace CustomerCare.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("Deactive");
+                    b.Property<bool>("Active");
 
                     b.Property<string>("Email")
                         .IsRequired()

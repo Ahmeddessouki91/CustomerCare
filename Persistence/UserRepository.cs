@@ -39,10 +39,12 @@ namespace CustomerCare.Persistence
 
         public async Task<User> GetUser(int id, bool includeRelated = true)
         {
-             if (!includeRelated)
+            if (!includeRelated)
                 return await context.Users.FindAsync(id);
 
             return await context.Users.Include(u => u.Customers)
+            // .ThenInclude(ur => ur.Customers)
+                            .Include(u => u.Interactions)
                           .SingleOrDefaultAsync(v => v.Id == id);
         }
     }

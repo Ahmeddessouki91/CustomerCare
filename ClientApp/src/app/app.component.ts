@@ -8,8 +8,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Customer care';
-  isAuth: boolean = false;
   constructor(private authService: AuthService) {
-    this.isAuth = this.authService.isAuthenticated();
   }
 }

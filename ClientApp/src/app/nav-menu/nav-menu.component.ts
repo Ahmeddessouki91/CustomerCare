@@ -10,6 +10,7 @@ import { Component } from '@angular/core';
 export class NavMenuComponent {
   isExpanded = false;
   profile: any = {};
+  
   constructor(private authService: AuthService, private router: Router) {
     this.profile = this.authService.userInfo;
   }

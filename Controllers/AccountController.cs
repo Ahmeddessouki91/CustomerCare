@@ -52,6 +52,7 @@ namespace CustomerCare.Controllers
             if (await _authRepo.UserExist(user.Email))
                 return BadRequest("Email is already registered!");
 
+            user.Deactive = true;
             var userToCreate = _mapper.Map<UserSaveResource, User>(user);
 
             await _authRepo.Register(userToCreate, user.Password);

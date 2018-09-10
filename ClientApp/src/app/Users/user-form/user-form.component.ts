@@ -17,7 +17,9 @@ export class UserFormComponent implements OnInit {
     email: "",
     isAdmin: false,
     name: "",
-    password: ""
+    password: "",
+    numOfCustomers: 0,
+    numOfInteractions: 0
   }
   update: boolean = false;
   constructor(private userService: UserService, private router: Router, private route: ActivatedRoute) {
@@ -35,9 +37,9 @@ export class UserFormComponent implements OnInit {
   }
 
   submit() {
-
-    this.userService.createUser(this.user).subscribe(u => {
-      this.router.navigate(['/users']);
-    });
+    if (this.update)
+      this.userService.update(this.user).subscribe(u => this.router.navigate(['/users']));
+    else
+      this.userService.createUser(this.user).subscribe(u =>this.router.navigate(['/users']));
   }
 }

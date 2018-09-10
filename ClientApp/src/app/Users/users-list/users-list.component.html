@@ -11,10 +11,10 @@
 
   <button class="btn btn-secondary" (click)="restFilter()">Reset</button>
 </div>
-<table class="table">
+<table class="table text-center">
   <thead>
     <tr>
-      <th *ngFor="let c of columns">
+      <th *ngFor="let c of columns" class="text-center">
         <div *ngIf="c.isSortable" (click)="sortBy(c.key)">
           {{c.title}}
           <i *ngIf="query.sortBy === c.key" class="fa" [class.fa-sort-up]="query.isSortAscending" [class.fa-sort-down]="!query.isSortAscending"></i>
@@ -30,10 +30,13 @@
       <td>{{u.id}}</td>
       <td>{{u.name}}</td>
       <td>{{u.email}}</td>
+      <td>{{u.numOfCustomers}}</td>
+      <td>{{u.numOfInteractions}}</td>
+      <td>{{u.deactive?'Deactive':'Active'}}</td>
       <td>
         <a [routerLink]="['/users/', u.id]">View </a>|
         <a [routerLink]="['/users/edit', u.id]">Edit </a>| 
-        <a href="#" (click)="toggleActivation(u)"> {{u.deactive?'Active':'Deactive'}}</a>
+        <a style="cursor: pointer;" (click)="toggleActivation(u)"> {{u.deactive?'Active':'Deactive'}}</a>
       </td>
     </tr>
   </tbody>

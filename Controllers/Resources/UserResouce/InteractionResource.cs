@@ -1,11 +1,9 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CustomerCare.Core.Models
+namespace CustomerCare.Controllers.Resources.UserResouce
 {
-    [Table("Interactions")]
-    public class Interaction
+    public class InteractionResource
     {
         public int Id { get; set; }
         [Required]
@@ -13,7 +11,8 @@ namespace CustomerCare.Core.Models
         public string Comment { get; set; }
         [Required]
         public int Status { get; set; }
-        public Customer Customer { get; set; }
-        public User User { get; set; }
+
+        public CustomerResource Customer { get; set; }
+
     }
 }

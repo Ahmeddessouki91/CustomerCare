@@ -22,8 +22,10 @@ namespace CustomerCare.Core.Models
         public bool IsAdmin { get; set; }
         public bool Deactive { get; set; }
         public ICollection<Customer> Customers { get; set; }
+        public ICollection<Interaction> Interactions { get; set; }
         public User()
         {
+            this.Interactions = new Collection<Interaction>();
             this.Customers = new Collection<Customer>();
         }
     }

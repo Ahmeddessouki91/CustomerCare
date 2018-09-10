@@ -19,6 +19,9 @@ export class UsersListComponent implements OnInit {
     { title: 'Id' },
     { title: 'Name', key: 'name', isSortable: true },
     { title: 'Email', key: 'email', isSortable: true },
+    { title: 'Customers' },
+    { title: 'Interactions' },
+    { title: 'Status' },
     {}
   ];
   constructor(private userService: UserService) { }

@@ -22,29 +22,29 @@ namespace CustomerCare.Controllers
         }
 
         [HttpGet]
-        public async Task<QueryResult<UserUpdateResouce>> GetUsers(UserQueryResource filterResource)
+        public async Task<QueryResult<UserResource>> GetUsers(UserQueryResource filterResource)
         {
             var filter = mapper.Map<UserQueryResource, UserQuery>(filterResource);
 
             var queryResult = await userRepo.GetUsers(filter);
 
-            return mapper.Map<QueryResult<User>, QueryResult<UserUpdateResouce>>(queryResult);
+            return mapper.Map<QueryResult<User>, QueryResult<UserResource>>(queryResult);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUser(int id)
         {
-            var vehicle = await userRepo.GetUser(id, true);
-            if (vehicle == null)
+            var user = await userRepo.GetUser(id);
+            if (user == null)
                 return NotFound();
 
-            var vehicleResource = mapper.Map<User, UserUpdateResouce>(vehicle);
+            var userResource = mapper.Map<User, UserResource>(user);
 
-            return Ok(vehicleResource);
+            return Ok(userResource);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateUser(int id, [FromBody] UserUpdateResouce userResource)
+        public async Task<IActionResult> UpdateUser(int id, [FromBody] UserSaveResource userResource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -55,12 +55,12 @@ namespace CustomerCare.Controllers
                 return NotFound();
 
 
-            mapper.Map<UserUpdateResouce, User>(userResource, user);
+            mapper.Map<UserSaveResource, User>(userResource, user);
 
             await uow.CompleteAsyn();
 
             user = await userRepo.GetUser(user.Id);
-            var result = mapper.Map<User, UserUpdateResouce>(user);
+            var result = mapper.Map<User, UserSaveResource>(user);
             return Ok(result);
         }
 

@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace CustomerCare.Controllers.Resources
+namespace CustomerCare.Controllers.Resources.CustomerResources
 {
-    public class CustomerResource
+    public class CustomerSaveResource
     {
         public int Id { get; set; }
         [Required]
@@ -14,5 +14,10 @@ namespace CustomerCare.Controllers.Resources
         [StringLength(20)]
         public string Mobile { get; set; }
         public bool Activated { get; set; }
+        public int UserId { get; set; }
+        [Required]
+        public int JobId { get; set; }
+        [Required]
+        public int GovernerateId { get; set; }
     }
 }

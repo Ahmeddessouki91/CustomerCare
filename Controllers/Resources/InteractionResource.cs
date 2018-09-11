@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace CustomerCare.Controllers.Resources.UserResouce
+namespace CustomerCare.Controllers.Resources
 {
     public class InteractionResource
     {
@@ -12,7 +12,7 @@ namespace CustomerCare.Controllers.Resources.UserResouce
         [Required]
         public int Status { get; set; }
 
-        public CustomerResource Customer { get; set; }
+        public KeyValuePairResource Customer { get; set; }
 
     }
 }

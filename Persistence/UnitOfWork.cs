@@ -7,7 +7,7 @@ namespace CustomerCare.Persistence
     {
         private readonly CuCareDbContext _context;
 
-        public async Task CompleteAsyn()
+        public async Task CompleteAsync()
         {
             await _context.SaveChangesAsync();
         }

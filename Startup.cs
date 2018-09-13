@@ -58,6 +58,8 @@ namespace CustomerCare
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IUserRepository,UserRepository>();
+            services.AddScoped<ICustomerRepository,CustomerRepository>();
+            services.AddScoped<ILookupRepository,LookupRepository>();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {

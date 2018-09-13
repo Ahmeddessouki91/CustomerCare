@@ -4,6 +4,6 @@ namespace CustomerCare.Core
 {
     public interface IUnitOfWork
     {
-         Task CompleteAsyn();
+         Task CompleteAsync();
     }
 }

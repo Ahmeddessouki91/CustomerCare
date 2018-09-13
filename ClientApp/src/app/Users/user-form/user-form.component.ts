@@ -18,7 +18,6 @@ export class UserFormComponent implements OnInit {
     isAdmin: false,
     name: "",
     password: "",
-    numOfCustomers: 0,
     numOfInteractions: 0
   }
   update: boolean = false;

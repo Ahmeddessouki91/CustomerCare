@@ -56,7 +56,7 @@ namespace CustomerCare.Controllers
             var userToCreate = _mapper.Map<UserSaveResource, User>(user);
 
             await _authRepo.Register(userToCreate, user.Password);
-            await _uow.CompleteAsyn();
+            await _uow.CompleteAsync();
 
             return StatusCode(201);
         }

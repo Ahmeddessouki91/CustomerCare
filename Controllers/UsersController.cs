@@ -57,7 +57,7 @@ namespace CustomerCare.Controllers
 
             mapper.Map<UserSaveResource, User>(userResource, user);
 
-            await uow.CompleteAsyn();
+            await uow.CompleteAsync();
 
             user = await userRepo.GetUser(user.Id);
             var result = mapper.Map<User, UserSaveResource>(user);

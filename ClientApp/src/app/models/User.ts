@@ -5,6 +5,5 @@ export interface User {
     isAdmin:boolean,
     deactive:boolean,
     password:string,
-    numOfCustomers:number,
     numOfInteractions:number
 }

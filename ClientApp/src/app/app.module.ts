@@ -1,3 +1,4 @@
+import { CustomerService } from './services/customer.service';
 import { ViewCustomerComponent } from './Customers/view-customer/view-customer.component';
 import { CustomerListComponent } from './Customers/customer-list/customer-list.component';
 import { CustomerFormComponent } from './Customers/customer-form/customer-form.component';
@@ -22,16 +23,16 @@ import { ViewUserComponent } from './Users/view-user/view-user.component';
 
 const routes = [
   { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard] },
-  
+
   { path: 'users/edit/:id', component: UserFormComponent, canActivate: [AuthGuard] },
   { path: 'customers/edit/:id', component: CustomerFormComponent, canActivate: [AuthGuard] },
-  
+
   { path: 'users/new', component: UserFormComponent, canActivate: [AuthGuard] },
   { path: 'customers/new', component: CustomerFormComponent, canActivate: [AuthGuard] },
-  
+
   { path: 'users/:id', component: ViewUserComponent, canActivate: [AuthGuard] },
   { path: 'customers/:id', component: ViewCustomerComponent, canActivate: [AuthGuard] },
-  
+
   { path: 'users', component: UsersListComponent, canActivate: [AuthGuard] },
   { path: 'customers', component: CustomerListComponent, canActivate: [AuthGuard] },
 
@@ -60,7 +61,7 @@ const routes = [
     NgSelectModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AuthService, UserService, AuthGuard],
+  providers: [AuthService, CustomerService, UserService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

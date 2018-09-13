@@ -12,7 +12,6 @@ namespace CustomerCare.Controllers.Resources.UserResouce
         public string Email { get; set; }
         public bool IsAdmin { get; set; }
         public bool Deactive { get; set; }
-        public int NumOfCustomers { get; set; }
         public int NumOfInteractions { get; set; }
     }
 }

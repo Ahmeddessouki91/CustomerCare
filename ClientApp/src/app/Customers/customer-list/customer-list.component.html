@@ -1,3 +1,47 @@
+
+<h2>Customers</h2>
+
 <p>
-  customer-list works!
+  <a [routerLink]="['/customers/new']" class="btn btn-primary">New Customer</a>
 </p>
+<div class="well row">
+  <div class="form-group col-md-6">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" class="form-control" [(ngModel)]="query.name" (keyup)="onFilterChange()">
+  </div>
+  <div class="form-group col-md-6">
+      <label for="mobile">Mobile</label>
+      <input type="text" name="mobile" id="mobile" class="form-control" [(ngModel)]="query.mobile" (keyup)="onFilterChange()">
+    </div>
+  <button class="btn btn-secondary" (click)="restFilter()">Reset</button>
+</div>
+<table class="table text-center">
+  <thead>
+    <tr>
+      <th class="text-center">Id</th>
+      <th class="text-center">Name</th>
+      <th class="text-center">Email</th>
+      <th class="text-center">Mobile</th>
+      <th class="text-center">Interactions</th>
+      <th class="text-center">Status</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of customers">
+      <td>{{c.Id}}</td>
+      <td>{{c.Name}}</td>
+      <td>{{c.Email}}</td>
+      <td>{{c.Mobile}}</td>
+      <td>{{c.Interactions}}</td>
+      <td>{{c.Activated?'Activated':'Deactivated'}}</td>
+      <td>
+        <a [routerLink]="['/customers/', c.Id]">View </a>|
+        <a [routerLink]="['/customers/edit', c.Id]">Edit </a>| 
+        <a style="cursor: pointer;" (click)="toggleActivation(c)"> {{c.Activated?'Active':'Deactive'}}</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<app-pagination [total-items]="totalItems" [page-size]="query.pageSize" (page-changed)="onPageChange($event)"></app-pagination>

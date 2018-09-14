@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Customer } from '../../models/Customer';
+import { SaveCustomer, Customer } from '../../models/Customer';
 import { CustomerService } from '../../services/customer.service';
 
 @Component({
@@ -42,8 +42,8 @@ export class CustomerListComponent implements OnInit {
     });
   }
 
-  toggleActivation(customer: Customer) {
-    customer.Activated = customer.Activated ? false : true;
+  toggleActivation(customer: SaveCustomer) {
+    customer.activated = customer.activated ? false : true;
     this.customerService.update(customer).subscribe(u => {
       this.populateCustomers();
     });

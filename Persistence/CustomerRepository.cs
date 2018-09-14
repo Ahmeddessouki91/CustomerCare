@@ -29,6 +29,8 @@ namespace CustomerCare.Persistence
                 return await context.Customers.FindAsync(id);
 
             return await context.Customers.Include(c => c.Interactions)
+                                           .Include(c => c.Governerate).ThenInclude(g => g.Country)
+                                           .Include(c => c.Job)
                                            .Include(c => c.User).SingleOrDefaultAsync(c => c.Id == id);
         }
 
@@ -38,7 +40,7 @@ namespace CustomerCare.Persistence
 
             var query = context.Customers
                             .Where(c => (string.IsNullOrEmpty(queryObj.Name) || c.Name.StartsWith(queryObj.Name))
-                                && (string.IsNullOrEmpty(queryObj.Mobile) || c.Name.StartsWith(queryObj.Mobile)))
+                                && (string.IsNullOrEmpty(queryObj.Mobile) || c.Mobile.StartsWith(queryObj.Mobile)))
                             .Include(c => c.Job)
                             .Include(c => c.User)
                             .AsQueryable();

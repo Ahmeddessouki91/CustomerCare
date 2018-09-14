@@ -10,12 +10,12 @@ using System;
 namespace CustomerCare.Controllers
 {
     [Route("/api/[Controller]")]
-    public class CustomersController:Controller
+    public class CustomersController : Controller
     {
         private readonly IMapper mapper;
         private readonly ICustomerRepository customerRepo;
         private readonly IUnitOfWork uow;
-        public CustomersController(IMapper mapper,ICustomerRepository customerRepo,IUnitOfWork uow)
+        public CustomersController(IMapper mapper, ICustomerRepository customerRepo, IUnitOfWork uow)
         {
             this.uow = uow;
             this.customerRepo = customerRepo;
@@ -45,12 +45,12 @@ namespace CustomerCare.Controllers
             return Ok(customerResource);
         }
 
-          [HttpPost]
+        [HttpPost]
         public async Task<IActionResult> CreateCustomer([FromBody] CustomerSaveResource customerResource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-
+            
             var customer = mapper.Map<CustomerSaveResource, Customer>(customerResource);
 
             customerRepo.Add(customer);

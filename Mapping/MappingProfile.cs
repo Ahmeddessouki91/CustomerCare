@@ -14,15 +14,17 @@ namespace CustomerCare.Mapping
             // Domain to API Resources
             CreateMap(typeof(QueryResult<>), typeof(QueryResultResource<>));
             CreateMap<Job, KeyValuePairResource>();
+            CreateMap<Country, KeyValuePairResource>();
             CreateMap<Country, CountryResource>();
-
             CreateMap<Governerate, KeyValuePairResource>();
+
             CreateMap<User, UserSaveResource>();
             CreateMap<Customer, CustomerSaveResource>();
 
             CreateMap<User, UserResource>()
                         .ForMember(ur => ur.NumOfInteractions, opt => opt.MapFrom(u => u.Interactions.Count));
             CreateMap<Customer, CustomerResource>()
+             .ForMember(cr => cr.Country, opt => opt.MapFrom(v => v.Governerate.Country))
             .ForMember(cr => cr.Interactions, opt => opt.MapFrom(c => c.Interactions.Count));
 
 

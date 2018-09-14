@@ -1,50 +1,78 @@
 <h2>Cutomer Form</h2>
-
+{{customer|json}}
 <div class="panel panel-default">
   <div class="panel-heading">Customer Form</div>
   <div class="panel-body">
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" class="form-control" name="name" id="name">
+    <form #f="ngForm" (ngSubmit)="submit()" novalidate>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" name="name" id="name" [(ngModel)]="customer.name" #name='ngModel' required>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" class="form-control" name="address" id="address" [(ngModel)]="customer.address" #address='ngModel' required>
+          </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="address">Address</label>
-          <input type="text" class="form-control" name="address" id="address">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="mobile">Mobile</label>
+            <input type="text" class="form-control" name="mobile" id="mobile" [(ngModel)]="customer.mobile" #mobile='ngModel' required>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" name="email" id="email" [(ngModel)]="customer.email" #email='ngModel' required>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="mobile">Mobile</label>
-          <input type="text" class="form-control" name="mobile" id="mobile">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="">Country</label>
+            <ng-select [items]="countries" bindLabel="name" bindValue="id" placeholder="Select Country" name="countryId" [(ngModel)]="customer.countryId"
+              (change)="onCountryChange()" #countryId='ngModel' required>
+            </ng-select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="">Governerate</label>
+            <ng-select [items]="governerates" bindLabel="name" bindValue="id" name="governerateId" placeholder="Select Governerate" [(ngModel)]="customer.governerateId"
+              #governerateId='ngModel' required>
+            </ng-select>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="job">Job</label>
+            <ng-select [items]="jobs" bindLabel="name" bindValue="id" placeholder="Select Job" [(ngModel)]="customer.jobId" name="jobId"
+              #jobId='ngModel' required>
+            </ng-select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for=""></label>
+            <div class="checkbox">
+              <label for="activated">
+                <input type="checkbox" value="false" name="activated" id="activated" [(ngModel)]="customer.activated"> Activated
+              </label>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" name="email" id="email">
-        </div>
+      <div class="form-group text-center">
+        <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Save</button>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="job">Job</label>
-          <ng-select [items]="jobs" bindLabel="name" bindValue="id" placeholder="Select Job" [(ngModel)]="customer.JobId">
-          </ng-select>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for=""></label>
-          <input type="text" class="form-control">
-        </div>
-      </div>
-    </div>
+    </form>
   </div>
-</div>

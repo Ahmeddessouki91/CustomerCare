@@ -1,17 +1,33 @@
+import { KeyValuePair } from './Customer';
+export interface SaveCustomer {
+    id: number,
+    name: string,
+    address: string,
+    email: string,
+    mobile: string,
+    interactions: number,
+    activated: boolean,
+    jobId: number,
+    governerateId: number,
+    countryId: number,
+    userId: number
+}
+
 export interface Customer {
-    Id: number,
-    Name: string,
-    Address: string,
-    Email: string,
-    Mobile: string,
-    Interactions: number,
-    Activated: boolean,
-    JobId: number,
-    GovernerateId: number
+    id: number,
+    name: string,
+    address: string,
+    email: string,
+    mobile: string,
+    interactions: number,
+    activated: boolean,
+    country: KeyValuePair,
+    governerate: KeyValuePair,
+    job: KeyValuePair
 }
 
 export interface KeyValuePair {
-    Id: number,
-    Name: string
+    id: number,
+    name: string
 }
 

@@ -1,5 +1,5 @@
-
-<h2>Customers</h2>
+<h2>
+  Customers</h2>
 
 <p>
   <a [routerLink]="['/customers/new']" class="btn btn-primary">New Customer</a>
@@ -10,9 +10,9 @@
     <input type="text" name="name" id="name" class="form-control" [(ngModel)]="query.name" (keyup)="onFilterChange()">
   </div>
   <div class="form-group col-md-6">
-      <label for="mobile">Mobile</label>
-      <input type="text" name="mobile" id="mobile" class="form-control" [(ngModel)]="query.mobile" (keyup)="onFilterChange()">
-    </div>
+    <label for="mobile">Mobile</label>
+    <input type="text" name="mobile" id="mobile" class="form-control" [(ngModel)]="query.mobile" (keyup)="onFilterChange()">
+  </div>
   <button class="btn btn-secondary" (click)="restFilter()">Reset</button>
 </div>
 <table class="table text-center">
@@ -29,16 +29,16 @@
   </thead>
   <tbody>
     <tr *ngFor="let c of customers">
-      <td>{{c.Id}}</td>
-      <td>{{c.Name}}</td>
-      <td>{{c.Email}}</td>
-      <td>{{c.Mobile}}</td>
-      <td>{{c.Interactions}}</td>
-      <td>{{c.Activated?'Activated':'Deactivated'}}</td>
+      <td>{{c.id}}</td>
+      <td>{{c.name}}</td>
+      <td>{{c.email}}</td>
+      <td>{{c.mobile}}</td>
+      <td>{{c.interactions}}</td>
+      <td>{{c.activated?'Activated':'Deactivated'}}</td>
       <td>
-        <a [routerLink]="['/customers/', c.Id]">View </a>|
-        <a [routerLink]="['/customers/edit', c.Id]">Edit </a>| 
-        <a style="cursor: pointer;" (click)="toggleActivation(c)"> {{c.Activated?'Active':'Deactive'}}</a>
+        <a [routerLink]="['/customers/', c.id]">View </a>|
+        <a [routerLink]="['/customers/edit', c.id]">Edit </a>|
+        <a style="cursor: pointer;" (click)="toggleActivation(c)"> {{c.activated?'Deactive':'Active'}}</a>
       </td>
     </tr>
   </tbody>

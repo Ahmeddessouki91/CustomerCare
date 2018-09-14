@@ -22,6 +22,14 @@ export class CustomerService {
         return this.http.put(`${this.customerEndpoint}/${customer.id}`, customer);
     }
 
+    getCountries() {
+        return this.http.get(`/api/countries`);
+    }
+
+    getJobs() {
+        return this.http.get('/api/jobs');
+    }
+    
     private toQueryString(obj) {
         var parts = [];
         for (var property in obj) {

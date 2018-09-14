@@ -11,6 +11,9 @@ namespace CustomerCare.Controllers.Resources.CustomerResources
         public string Mobile { get; set; }
         public int Interactions { get; set; }
         public KeyValuePairResource User { get; set; }
+        public KeyValuePairResource Country { get; set; }
+        public KeyValuePairResource Governerate { get; set; }
+        public KeyValuePairResource Job { get; set; }
         public bool Activated { get; set; }
     }
 }
